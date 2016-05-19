@@ -1,0 +1,34 @@
+{
+  "name": "gulp-pattern-rename",
+  "description": "Replace folder names and files given some properties",
+  "version": "0.1.0",
+  "repository": "git://github.com/drginm/gulp-pattern-rename.git",
+  "author": "Manuel Gutierrez @drginm",
+  "main": "./index.js",
+  "keywords": [
+    "gulpplugin",
+    "pattern-rename"
+  ],
+  "dependencies": {
+    "lodash": "^4.12.0",
+    "sanitize-filename": "^1.6.0",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp-util": "^3.0.2",
+    "mocha": "^2.3.3",
+    "should": "^7.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">= 0.9.0"
+  },
+  "licenses": [
+    {
+      "type": "Apache License 2.0",
+      "url": "https://raw.githubusercontent.com/drginm/gulp-pattern-rename/master/LICENSE"
+    }
+  ]
+}
