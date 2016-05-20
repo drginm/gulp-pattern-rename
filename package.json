@@ -1,7 +1,7 @@
 {
   "name": "gulp-pattern-rename",
   "description": "Replace folder names and files given some properties",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": "git://github.com/drginm/gulp-pattern-rename.git",
   "author": "Manuel Gutierrez @drginm",
   "main": "./index.js",

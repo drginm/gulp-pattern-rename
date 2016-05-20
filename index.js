@@ -3,19 +3,19 @@ var through = require('through2');
 var sanitize = require("sanitize-filename");
 
 module.exports = function(_opts) {
-  var opts = {
+  var opts = _opts;
+
+  _.extend(opts, {
     prefix: '__',
     suffix: '__'
-  };
-
-  _.extend(opts, _opts);
+  });
 
   function replaceAll(target, search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
   }
 
   function raplaceName(filePath, pattern, value) {
-    return replaceAll(filePath, sanitize(opts.prefix + pattern + opts.suffix), sanitize(value));
+    return replaceAll(filePath, sanitize(opts.prefix + pattern + opts.suffix), sanitize(value.toString()));
   }
 
   function modifyFile(file, enc, cb) {
