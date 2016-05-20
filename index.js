@@ -3,12 +3,12 @@ var through = require('through2');
 var sanitize = require("sanitize-filename");
 
 module.exports = function(_opts) {
-  var opts = _opts;
-
-  _.extend(opts, {
+  var opts = {
     prefix: '__',
     suffix: '__'
-  });
+  };
+
+  _.extend(opts, _opts);
 
   function replaceAll(target, search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);

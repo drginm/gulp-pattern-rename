@@ -12,7 +12,18 @@ This is a gulp plugin for renaming files using properties.
 var patternRename = require('gulp-pattern-rename');
 
 patternRename({
+  prefix: '__',//optional
+  suffix: '__',//optional
   props: {
-    valueToReplace: 'newValue'
+    valueToReplace: 'newValue',
+    anotherValue: 'anotherNewValue'
   }
 })
+
+This will replace a file name in the following way:
+
+original
+__valueToReplace__SomethingElse/__valueToReplace__-__anotherValue__.js
+
+into
+newValueSomethingElse/newValue-anotherNewValue.js
