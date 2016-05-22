@@ -53,6 +53,64 @@ describe('gulp-pattern-rename', function() {
 
       testStream(stream, fakeFile, '/home/true/test/true.js', done);
     });
+    it('should sanitize a property value containing invalid characters', function(done) {
+      var stream = patternRename({
+        props: {
+          anotherValue: 'one/two/three',
+        }
+      });
+      var fakeFile = new gutil.File({
+        path: '/home/__anotherValue__/test/newValue.js',
+        base: '/home/__anotherValue__/test/',
+        cwd: '/home/__anotherValue__/',
+        contents: new Buffer('test content')
+      });
+
+      testStream(stream, fakeFile, '/home/onetwothree/test/newValue.js', done);
+    });
+    it('should rename folder with new value creating subfolders using provided separator', function(done) {
+      var stream = patternRename({
+        props: {
+          valueToReplace: 'newValue',
+          anotherValue: 'one/two/three',
+        },
+        meta: {
+          anotherValue: {
+            createSubfolders: true,
+            folderSeparator: '/'
+          }
+        },
+      });
+      var fakeFile = new gutil.File({
+        path: '/home/__anotherValue__/test/__valueToReplace__.js',
+        base: '/home/__anotherValue__/test/',
+        cwd: '/home/__anotherValue__/',
+        contents: new Buffer('test content')
+      });
+
+      testStream(stream, fakeFile, '/home/one/two/three/test/newValue.js', done);
+    });
+    it('should rename folder with new value creating subfolders using standard dot separator', function(done) {
+      var stream = patternRename({
+        props: {
+          valueToReplace: 'newValue',
+          anotherValue: 'one.two.three',
+        },
+        meta: {
+          anotherValue: {
+            createSubfolders: true,
+          }
+        },
+      });
+      var fakeFile = new gutil.File({
+        path: '/home/__anotherValue__/test/__valueToReplace__.js',
+        base: '/home/__anotherValue__/test/',
+        cwd: '/home/__anotherValue__/',
+        contents: new Buffer('test content')
+      });
+
+      testStream(stream, fakeFile, '/home/one/two/three/test/newValue.js', done);
+    });
 
     function testStream(stream, fakeFile, expectedString, done) {
 
